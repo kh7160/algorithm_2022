@@ -1,1 +1,1 @@
-print(1//3)
+print(divmod(1,2))
