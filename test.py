@@ -1,1 +1,1 @@
-print(divmod(1,2))
+print(int('00009'))
