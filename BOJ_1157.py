@@ -10,6 +10,10 @@ for ch in s:
 # arr = [(0,10),(1,14),(2,2),(3,24)]
 # str = max(arr,key = lambda x:x[1])
 max_value = max(cnt_dict.values())
-result = list(filter(lambda x:cnt_dict[x] == max_value, cnt_dict.keys()))
-# print(result)
-print('?' if len(result) > 1 else result[0])
+cnt = 0
+for key, value in cnt_dict.items():
+    if value == max_value:
+        cnt += 1
+        result = key
+
+print('?' if cnt > 1 else result)
