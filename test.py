@@ -1,3 +1,2 @@
-import math
-
-print(math.gcd(4,4))
+print(int(input()))
+print(int(input()))
