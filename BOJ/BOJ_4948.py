@@ -3,11 +3,11 @@ def get_prime_list(n):
     chk = [False, False] + [True] * (n - 1)
     primes = []
     for i in range(2, n + 1):
-        primes.append(i)
         if chk[i]:
+            primes.append(i)
             for j in range(2 * i, n + 1, i):
                 chk[j] = False
-
+    print(primes)
     return chk
 
 
