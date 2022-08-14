@@ -1,0 +1,8 @@
+n = int(input())
+for num in range(1,n+1):
+    num_ = list(str(num))
+    cnt = num_.count('3') + num_.count('6') + num_.count('9')
+    if cnt != 0:
+        print('-' * cnt, end=' ')
+    else:
+        print(num, end=' ')

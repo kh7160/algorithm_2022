@@ -1,0 +1,16 @@
+from collections import Counter
+t = int(input())
+# fp = open('/Users/chang-gihyeok/Downloads/input (2).txt', 'r')
+# t = int(fp.readline())
+
+for _ in range(t):
+    n = int(input())
+    # n = int(fp.readline())
+    nums = input().split()
+    print(f'nums : {nums}')
+    # nums = list(map(int, input().split(' ')))
+    # nums = fp.readline().split(' ')
+    # nums = nums[:-1]
+    
+    mc = Counter(nums).most_common()[0][0]
+    print(f'#{n} {mc}')

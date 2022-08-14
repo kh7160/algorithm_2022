@@ -1,0 +1,5 @@
+n = int(input())
+nums = [list(map(int, input().split(' '))) for _ in range(n)]
+for idx, line in enumerate(nums):
+    result = sum([num for num in line if num % 2 != 0])
+    print(f'#{idx+1} {result}')
