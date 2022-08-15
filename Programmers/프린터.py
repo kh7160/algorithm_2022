@@ -7,22 +7,22 @@ def solution(priorities, location):
     max_ = max(queue)
     while True:
         left_ = queue.popleft()
-        print(f'queue, location : {queue, location}')
+        # print(f'queue, location : {queue, location}')
         if max_ == left_:
             answer += 1
             if location == 0:
                 break
             else:
-                print(f'max_queue, location : {queue, location}')
+                # print(f'max_queue, location : {queue, location}')
                 max_ = max(queue)
                 location = location - 1 if location > 0 else len(queue)-1
                 continue
 
         queue.append(left_)
         location = location - 1 if location > 0 else len(queue)-1
-        print(f'queue, location : {queue, location}')
+        # print(f'queue, location : {queue, location}')
 
-    print(f'answer : {answer}')
+    # print(f'answer : {answer}')
     return answer
 
 
