@@ -1,0 +1,9 @@
+t = int(input())
+for _ in range(t):
+    word = input()
+    chk = True
+    for i in range(len(word) // 2):
+        if word[i] != word[len(word)-i-1]:
+            chk = False
+
+    print(f'#{_+1} {1 if chk == True else 0}')

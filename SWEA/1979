@@ -1,0 +1,46 @@
+t = int(input())
+for _ in range(t):
+    n,k = map(int, input().split())
+    print(f'n,k : {n,k}')
+    map_ = [input().split() for _ in range(n)]
+    answer = 0
+    for i in range(n):
+        for j in range(n):
+            if map_[i][j] == '1':
+                # print('가로 확인')
+                cnt = 0
+                for z in range(j,n):
+                    if j != 0:
+                        if map_[i][j-1] != '0':
+                            break
+                    # print(f'map_[{i}][{z}] : {map_[i][z]}')
+                    if map_[i][z] == '1':
+                        cnt += 1
+                        if cnt > k:
+                            break
+                    else:
+                        break
+
+                if cnt == k:
+                    # print('answer 추가')
+                    answer += 1
+                
+                # print('세로 확인')
+                cnt = 0
+                for z in range(i,n):
+                    if i != 0:
+                        if map_[i-1][j] != '0':
+                            break
+                    # print(f'map_[{z}][{j}] : {map_[z][j]}')
+                    if map_[z][j] == '1':
+                        cnt += 1
+                        if cnt > k:
+                            break
+                    else:
+                        break
+            
+                if cnt == k:
+                    # print('answer 추가')
+                    answer += 1
+
+    print(f'#{_+1} {answer}')

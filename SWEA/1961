@@ -1,0 +1,15 @@
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    map_ = [input().split() for _ in range(n)]
+    rslt = []
+
+    rslt.append([''.join([map_[i][j] for i in range(n-1, -1, -1)]) for j in range(n)])
+    rslt.append([''.join([map_[j][i] for i in range(n-1, -1, -1)]) for j in range(n-1, -1, -1)])
+    rslt.append([''.join([map_[i][j] for i in range(n)]) for j in range(n-1, -1, -1)])
+
+    print(f'#{_+1}')
+    for j in range(n):
+        for i in range(3):
+            print(rslt[i][j], end=' ')
+        print()
