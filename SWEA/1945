@@ -1,0 +1,24 @@
+from operator import mod
+
+
+t = int(input())
+
+for case in range(t):
+    N = {2:0,
+        3:0,
+        5:0,
+        7:0,
+        11:0}
+
+    n = int(input())
+    n_key = N.keys()
+    for i in n_key:
+        while True:
+            div_, mod_ = divmod(n, i)
+            # print(f'div_, mod_ : {div_, mod_}')
+            if mod_ != 0:
+                break
+
+            N[i] += 1
+            n = div_
+    print(f'#{case+1} {N[2] } {N[3] } {N[5] } {N[7] } {N[11]}')

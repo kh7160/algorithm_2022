@@ -1,0 +1,14 @@
+t = int(input())
+for _ in range(t):
+    n,m = map(int, input().split())
+    n_ = list(map(int, input().split()))
+    m_ = list(map(int, input().split()))
+
+    fix = n_ if n > m else m_
+    mv = m_ if m < n else n_
+    print(f'fix, mv : {fix, mv}')
+    max_ = 0
+    for i in range(len(fix) - len(mv) + 1):
+        fix_ = fix[i:i+len(mv)]
+        max_ = max(sum([fix_[_] * mv[_] for _ in range(len(mv))]), max_)
+    print(f'#{_+1} {max_}')
