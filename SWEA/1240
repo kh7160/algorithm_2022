@@ -1,0 +1,36 @@
+# fp = open('/Users/chang-gihyeok/Downloads/input.txt', 'r')
+
+bin_ = {
+    '0001101':0,
+    '0011001':1,
+    '0010011':2,
+    '0111101':3,
+    '0100011':4,
+    '0110001':5,
+    '0101111':6,
+    '0111011':7,
+    '0110111':8,
+    '0001011':9
+}
+
+t = int(input())
+# t = int(fp.readline())
+for case in range(t):
+    n, m = map(int, input().split())
+    # n, m = map(int, fp.readline().split(' '))
+    # print(f'n, m : {n, m}')
+    answer = 0
+    for _ in range(n):
+        line = input()
+        # line = fp.readline()[:-1]
+        if line == ('0' * m):
+            continue
+
+        line = line.rstrip('0')[::-1][:56][::-1]
+        # for i in range(0, len(line), 7):
+            # print(f'word : {line[i:i+7]}')
+            # print(f'word : {bin_[line[i:i+7]]}')
+        sum_ = (bin_[line[0:7]] + bin_[line[14:21]] + bin_[line[28:35]] + bin_[line[42:49]]) * 3 + bin_[line[7:14]] + bin_[line[21:28]] + bin_[line[35:42]] + bin_[line[49:56]]
+        answer = 0 if sum_ % 10 != 0 else bin_[line[0:7]] + bin_[line[14:21]] + bin_[line[28:35]] + bin_[line[42:49]] + bin_[line[7:14]] + bin_[line[21:28]] + bin_[line[35:42]] + bin_[line[49:56]]
+
+    print(f'#{case+1} {answer}')
