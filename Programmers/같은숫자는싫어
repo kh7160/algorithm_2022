@@ -1,0 +1,17 @@
+from collections import deque
+
+def solution(arr):
+    answer = []
+    dq_arr = deque(arr)
+    while dq_arr:
+        dqpl = dq_arr.popleft()
+        if len(answer) != 0 and answer[-1] == dqpl:
+            continue
+        answer.append(dqpl)
+    return answer
+
+
+if __name__ == '__main__':
+    # arr = [1,1,3,3,0,1,1]
+    arr = [4,4,4,3,3]
+    solution(arr)
