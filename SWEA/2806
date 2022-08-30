@@ -1,0 +1,28 @@
+def dfs(depth):
+    global answer
+    if depth == n:
+        answer += 1
+        return
+
+    for i in range(n):
+        if i in col or depth + i in r_to_l or depth - i in l_to_r:
+            continue
+
+        col.append(i)
+        r_to_l.append(depth + i)
+        l_to_r.append(depth - i)
+        dfs(depth+1)
+        col.remove(i)
+        r_to_l.remove(depth + i)
+        l_to_r.remove(depth - i)
+
+
+t = int(input())
+for case in range(t):
+    n = int(input())
+    answer = 0
+    col = []
+    l_to_r = []
+    r_to_l = []
+    dfs(0)
+    print(f'#{case+1} {answer}')
