@@ -1,0 +1,23 @@
+def solution(s):
+    stack = []
+    for ch in s:
+        if ch == '(':
+            stack.append(ch)
+        else:
+            if stack[-1:] == ['(']:
+                stack.pop()
+            else:
+                stack.append(')')
+    
+    answer = False if len(stack) != 0 else True
+    # print(f'answer : {answer}')
+    return answer
+
+
+if __name__ == '__main__':
+    S = "()()"
+    S = "(())()"
+    S = ")()("
+    S = "(()("
+    S = ")"
+    solution(S)
