@@ -2,6 +2,7 @@ import heapq
 
 def solution(scoville, K):
     answer = 0
+    heapq.heapify(scoville)
     while len(scoville) > 1:
         # print(f'scoville : {scoville}')
         first = heapq.heappop(scoville)
