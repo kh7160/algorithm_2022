@@ -1,0 +1,32 @@
+import math
+from itertools import combinations
+def isOdd(num):
+    if num == 0 or num == 1:
+        return False
+
+    for j in range(2, math.ceil(math.sqrt(num))+1):
+        if num % j == 0:
+            return False
+
+    return True
+
+
+def solution(numbers):
+    answer = 0
+    numbers = list(numbers)
+    for i in range(1, len(numbers)+1):
+        pnum = list(combinations(numbers, i))
+        pnum = set([int(''.join(num)) for num in pnum])
+        print(pnum)
+        for num in pnum:
+            # print(f'num : {num}')
+            if isOdd(num):
+                answer += 1
+    print(f'answer : {answer}')
+    return answer
+
+
+if __name__ == '__main__':
+    # numbers = "17"
+    numbers = "011"
+    solution(numbers)

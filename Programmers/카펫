@@ -1,0 +1,25 @@
+def solution(brown, yellow):
+    for i in range(1, yellow+1):
+        row = i
+        col, mod = divmod(yellow, i)
+        # print(f'row, col, mod : {row, col, mod}')
+        if mod != 0:
+            continue
+
+        sqr = (row + 2) * 2 + col * 2 + yellow
+        if brown + yellow == sqr:
+            print(f'row, col, sqr : {row + 2, col + 2, sqr}')
+            if row + 2 >= col + 2:
+                answer = [row+2, col+2]
+    print(f'answer : {answer}')
+    return answer
+
+
+if __name__ == '__main__':
+    # brown = 10
+    # brown = 8
+    brown = 24
+    # yellow = 2
+    # yellow = 1
+    yellow = 24
+    solution(brown, yellow)
