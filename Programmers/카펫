@@ -8,10 +8,10 @@ def solution(brown, yellow):
 
         sqr = (row + 2) * 2 + col * 2 + yellow
         if brown + yellow == sqr:
-            print(f'row, col, sqr : {row + 2, col + 2, sqr}')
+            # print(f'row, col, sqr : {row + 2, col + 2, sqr}')
             if row + 2 >= col + 2:
                 answer = [row+2, col+2]
-    print(f'answer : {answer}')
+    # print(f'answer : {answer}')
     return answer
 
 
