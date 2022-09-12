@@ -1,0 +1,27 @@
+t = int(input())
+for _ in range(t):
+    N, L = map(int, input().split())
+    score = []
+    calories = []
+    fnl_dict = {}
+    answer = 0
+    tot_calories = 0
+    for i in range(N):
+        sc, ca = map(int, input().split())
+        score.append(sc)
+        calories.append(ca)
+
+    priority = [score[i] / calories[i] for i in range(len(score))]
+    for i in range(N):
+        fnl_dict[i] = priority[i]
+    fnl_dict = sorted(fnl_dict.items(), key=lambda x:x[1], reverse=True)
+
+    for key, value in fnl_dict:
+        answer += score[key]
+        tot_calories += calories[key]
+        if tot_calories > L:
+            answer -= score[key]
+            tot_calories -= calories[key]
+            continue
+
+    print(f'#{_+1} {answer}')
