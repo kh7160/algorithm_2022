@@ -5,10 +5,10 @@ answer = 0
 
 def dfs(numbers, target, idx, tot, plus_or_minus = '+'):
     global answer
-    print(f'idx, tot, plus_or_minus : {idx, tot, plus_or_minus}')
+    # print(f'idx, tot, plus_or_minus : {idx, tot, plus_or_minus}')
     if idx == len(numbers):
         if sum(tot) == target:
-            print('plus answer')
+            # print('plus answer')
             answer += 1
         return
     for _ in range(2):
@@ -21,7 +21,6 @@ def dfs(numbers, target, idx, tot, plus_or_minus = '+'):
 def solution(numbers, target):
     tot = []
     dfs(numbers, target, 0, tot)
-    print(f'answer : {answer}')
     return answer
 
 
