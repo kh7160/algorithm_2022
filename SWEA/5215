@@ -1,27 +1,31 @@
+def dfs(idx, tot_score, tot_calories):
+    global answer
+    print(f'idx, tot_score, tot_calories : {idx, tot_score, tot_calories}')
+    if tot_calories > L:
+        return
+    
+    answer = max(tot_score, answer)
+    
+    if idx == N:
+        return
+    
+    dfs(idx+1, tot_score + score[idx], tot_calories + calories[idx])
+    dfs(idx+1, tot_score, tot_calories)
+
+
 t = int(input())
 for _ in range(t):
+    answer = 0
     N, L = map(int, input().split())
     score = []
     calories = []
-    fnl_dict = {}
-    answer = 0
+    tot_score = 0
     tot_calories = 0
+
     for i in range(N):
         sc, ca = map(int, input().split())
         score.append(sc)
         calories.append(ca)
 
-    priority = [score[i] / calories[i] for i in range(len(score))]
-    for i in range(N):
-        fnl_dict[i] = priority[i]
-    fnl_dict = sorted(fnl_dict.items(), key=lambda x:x[1], reverse=True)
-
-    for key, value in fnl_dict:
-        answer += score[key]
-        tot_calories += calories[key]
-        if tot_calories > L:
-            answer -= score[key]
-            tot_calories -= calories[key]
-            continue
-
+    dfs(0, tot_score, tot_calories)
     print(f'#{_+1} {answer}')

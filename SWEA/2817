@@ -1,0 +1,15 @@
+from itertools import combinations
+T = int(input())
+
+
+for _ in range(T):
+    N, K = map(int, input().split())
+    A = list(map(int, input().split()))
+    answer = 0
+    # print(f'N, K, A : {N, K, A}')
+    for i in range(1, len(A)+1):
+        for bubn in combinations(A, i):
+            if sum(bubn) == K:
+                # print(bubn)
+                answer += 1
+    print(f'#{_+1} {answer}')

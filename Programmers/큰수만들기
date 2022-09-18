@@ -9,7 +9,7 @@ def solution(number, k):
     cnt = 0
     stack.append(number.popleft())
     while number:
-        print(f'stack, number, cnt : {stack, number, cnt}')
+        # print(f'stack, number, cnt : {stack, number, cnt}')
         left_num = number.popleft()
         if stack[-1] < left_num:
             while True:
@@ -22,11 +22,10 @@ def solution(number, k):
         if cnt == k:
             break
 
-    print(f'stack : {stack}')
+    # print(f'stack : {stack}')
     stack = stack[:goal_len] if len(stack) > goal_len else stack + list(number)
-        
     answer = ''.join(stack)
-    print(f'answer : {answer}')
+    # print(f'answer : {answer}')
     return answer
 
 
