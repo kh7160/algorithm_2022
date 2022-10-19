@@ -19,4 +19,4 @@ for ch in s:
         cnt1 += 1
         chk = True
 
-print(cnt0, cnt1)
+print(min(cnt0, cnt1))

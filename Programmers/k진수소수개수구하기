@@ -1,0 +1,60 @@
+import math
+
+
+def getSinglePrime(n):
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+def getPrime(n, isPrime):
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if isPrime[i] == True:
+            for j in range(i*2, n+1, i):
+                isPrime[j] = False
+
+
+def convert(n, k):
+    result = ''
+    while True:
+        div, mod = divmod(n, k)
+        if div == 0:
+            break
+        result += str(mod)
+        n = div
+
+    result += str(n)
+    result = result[::-1]
+    return result
+
+
+def solution(n, k):
+    answer = 0
+    isPrime = [False, False] + [True for _ in range(n-1)]
+    convert_num = convert(n, k)
+    print(f'convert_num : {convert_num}')
+    getPrime(n, isPrime)
+    mid_num = ''
+    for num in convert_num:
+        if num == '0':
+            answer = answer + 1 if len(mid_num) != 0 and isPrime[int(mid_num)] else answer
+            # print(f'mid_num, isPrime[int(mid_num)] : {mid_num, isPrime[int(mid_num)]}')
+            mid_num = ''
+            continue
+        mid_num += num
+    mid_num = 1 if len(mid_num) == 0 else mid_num
+    print(f'mid_num : {mid_num}')
+    if int(mid_num) > len(isPrime):
+        answer = answer + 1 if getSinglePrime(int(convert_num)) else answer
+    else:
+        answer = answer + 1 if isPrime[int(mid_num)] else answer
+    print(f'answer : {answer}')
+    return answer
+
+
+if __name__ == '__main__':
+    n = 437674
+    k = 3
+    n = 3
+    k = 3
+    solution(n, k)

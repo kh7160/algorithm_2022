@@ -1,0 +1,32 @@
+import sys
+sys.setrecursionlimit(10**6)
+
+answer = 0
+
+
+def dfs(n, step, tot_step):
+    global answer
+    # print(f'step, tot_step : {step, tot_step}')
+    if sum(tot_step) == n:
+        answer += 1
+        # print('answer 추가')
+        return
+    
+    if sum(tot_step) > n:
+        # print('n 초과')
+        return
+
+    for step in range(1,3): # 1, 2칸
+        tot_step.append(step)
+        dfs(n, step, tot_step)
+        tot_step.pop()
+
+
+def solution(n):
+    dfs(n, 0, [])
+    # print(f'answer : {answer}')
+    return answer
+
+n = 4
+n = 3
+solution(n)
