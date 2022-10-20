@@ -7,6 +7,7 @@ def getSinglePrime(n):
             return False
     return True
 
+
 def getPrime(n, isPrime):
     for i in range(2, int(math.sqrt(n)) + 1):
         if isPrime[i] == True:
