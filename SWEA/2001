@@ -1,4 +1,17 @@
 t = int(input())
-n, m = map(int, input().split())
-area = [list(map(int, input().split())) for _ in range(n)]
-print(area)
+
+for _ in range(t):
+    n, m = map(int, input().split())
+    area = [list(map(int, input().split())) for _ in range(n)]
+    max_ = 0
+
+    for i in range(0, n-m+1):
+        for j in range(0, n-m+1):
+            sum_ = 0
+            for k in range(i, i+m):
+                # print(f'area[k][j+m] : {area[k][j:j+m]}')
+                sum_ += sum(area[k][j:j+m])
+            # print(f'max_, sum_ : {max_, sum_}')
+            max_ = max(max_, sum_)
+        
+    print(f'#{_+1} {max_}')

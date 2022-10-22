@@ -1,0 +1,13 @@
+# fp = open('/Users/chang-gihyeok/Downloads/input.txt', 'r')
+
+for case in range(10):
+    n = int(input())
+    # n = int(fp.readline())
+    map_ = [list(map(int, input())) for _ in range(100)]
+    # map_ = [list(map(int, fp.readline().split())) for _ in range(100)]
+    max_row = max([sum(_) for _ in map_])
+    max_col = max([sum([map_[j][i] for j in range(100)]) for i in range(100)])
+    max_right_bottom = sum([map_[i][i] for i in range(100)])
+    max_left_bottom = sum([map_[i][99-i] for i in range(100)])
+
+    print(f'#{case+1} {max(max_row, max_col, max_right_bottom, max_left_bottom)}')

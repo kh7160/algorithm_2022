@@ -1,0 +1,32 @@
+import sys
+sys.setrecursionlimit(10 ** 6)
+answer = 0
+
+
+def dfs(numbers, target, idx, tot, plus_or_minus = '+'):
+    global answer
+    # print(f'idx, tot, plus_or_minus : {idx, tot, plus_or_minus}')
+    if idx == len(numbers):
+        if sum(tot) == target:
+            # print('plus answer')
+            answer += 1
+        return
+    for _ in range(2):
+        plus_or_minus = '+' if _ == 0 else '-'
+        num = numbers[idx] if plus_or_minus == '+' else -numbers[idx]
+        tot.append(num)
+        dfs(numbers, target, idx+1, tot, plus_or_minus)
+        tot.pop()
+
+def solution(numbers, target):
+    tot = []
+    dfs(numbers, target, 0, tot)
+    return answer
+
+
+if __name__ == '__main__':
+    numbers = [1, 1, 1, 1, 1]
+    numbers = [4, 1, 2, 1]
+    target = 3
+    target = 2
+    solution(numbers, target)

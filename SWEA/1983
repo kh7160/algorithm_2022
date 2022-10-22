@@ -1,0 +1,23 @@
+t = int(input())
+for case in range(t):
+    n, k = map(int, input().split())
+    score = []
+    for _ in range(n):
+        score.append(list(map(int, input().split())))
+    
+    fnl_score = [_[0]*0.35 + _[1]*0.45 + _[2]*0.2 for _ in score]
+    rank = 1
+    for _ in fnl_score:
+        if _ > fnl_score[k-1]:
+            rank += 1
+    
+    print(f'#{case+1} A+' if (rank / n) <= 0.1 else\
+        f'#{case+1} A0' if (rank / n) <= 0.2 else\
+        f'#{case+1} A-' if (rank / n) <= 0.3 else\
+        f'#{case+1} B+' if (rank / n) <= 0.4 else\
+        f'#{case+1} B0' if (rank / n) <= 0.5 else\
+        f'#{case+1} B-' if (rank / n) <= 0.6 else\
+        f'#{case+1} C+' if (rank / n) <= 0.7 else\
+        f'#{case+1} C0' if (rank / n) <= 0.8 else\
+        f'#{case+1} C-' if (rank / n) <= 0.9 else\
+        f'#{case+1} D0')

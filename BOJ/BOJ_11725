@@ -1,0 +1,29 @@
+import sys
+sys.setrecursionlimit(10 ** 6)
+
+n = int(input())
+graph = {}
+visitied = [False] * (n+1)
+parent_node = [0] * (n+1)
+
+
+def dfs(cur_node, bf_node):
+    if visitied[cur_node]:
+        return
+
+    visitied[cur_node] = True
+    parent_node[cur_node] = bf_node
+    for v in graph[cur_node]:
+        dfs(v, cur_node)
+
+
+for _ in range(n):
+    graph[_+1] = []
+
+for _ in range(n-1):
+    v1, v2 = map(int, input().split())
+    graph[v1].append(v2)
+    graph[v2].append(v1)
+dfs(1, 0)
+for _ in parent_node[2:]:
+    print(_)

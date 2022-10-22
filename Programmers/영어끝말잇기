@@ -1,0 +1,32 @@
+def solution(n, words):
+    depth = 0
+    answer = [0, 0]
+    word_history = []
+    for idx, word in enumerate(words):  
+        # print(f'idx, word : {idx, word}')
+        if idx%n == 0: # 차례
+            depth += 1
+
+        if word in word_history: # 기사용 단어 얘기했을 때
+            answer[0] = (idx%n) + 1 # 번호
+            answer[1] = depth
+            break
+
+        if idx > 0 and words[idx-1][-1] != word[0]: # 끝말잇기 틀렸을 때
+            answer[0] = (idx%n) + 1 # 번호
+            answer[1] = depth
+            break
+
+        word_history.append(word)
+
+    # print(f'answer : {answer}')
+    return answer
+
+
+n = 3
+n = 5
+n = 2
+words = ["tank", "kick", "know", "wheel", "land", "dream", "mother", "robot", "tank"]
+words = ["hello", "observe", "effect", "take", "either", "recognize", "encourage", "ensure", "establish", "hang", "gather", "refer", "reference", "estimate", "executive"]
+words = ["hello", "one", "even", "never", "now", "world", "draw"]
+solution(n, words)

@@ -1,0 +1,49 @@
+from math import ceil
+
+
+def solution(fees, records):
+    answer = []
+    base_time = fees[0]
+    base_cash = fees[1]
+    add_time = fees[2]
+    add_cash = fees[3]
+    car_dict = {}
+    result_dict = {}
+    for record in records:
+        time, car_num, in_out = record.split()
+        if in_out == 'IN':
+            car_dict[car_num] = time
+        else:
+            in_time = car_dict[car_num]
+            in_hour, in_minute = map(int, in_time.split(':'))
+            out_hour, out_minute = map(int, time.split(':'))
+            tot_time = (out_hour - in_hour) * 60 + (out_minute - in_minute)
+            result_dict[car_num] = tot_time if car_num not in result_dict.keys() else result_dict[car_num] + tot_time
+            car_dict.pop(car_num)
+
+    for car_num, in_time in car_dict.items():
+        in_hour, in_minute = map(int, in_time.split(':'))
+        out_hour, out_minute = 23, 59
+        tot_time = (out_hour - in_hour) * 60 + (out_minute - in_minute)
+        result_dict[car_num] = tot_time if car_num not in result_dict.keys() else result_dict[car_num] + tot_time
+        
+    for car_num, tot_time in result_dict.items():
+        car_dict[car_num] = base_cash + ceil((tot_time - base_time)/add_time) * add_cash if tot_time > base_time else base_cash
+
+    car_dict = sorted(car_dict.items(), key=lambda x:x[0])
+    
+    for car in car_dict:
+        answer.append(car[1])
+
+    print(answer)
+    return answer
+
+
+if __name__ == '__main__':
+    fees = [180, 5000, 10, 600]
+    records = ["05:34 5961 IN", "06:00 0000 IN", "06:34 0000 OUT", "07:59 5961 OUT", "07:59 0148 IN", "18:59 0000 IN", "19:09 0148 OUT", "22:59 5961 IN", "23:00 5961 OUT"]
+    fees = [120, 0, 60, 591]
+    records = ["16:00 3961 IN","16:00 0202 IN","18:00 3961 OUT","18:00 0202 OUT","23:58 3961 IN"]
+    fees = [1, 461, 1, 10]
+    records = ["00:00 1234 IN"]
+    solution(fees, records)

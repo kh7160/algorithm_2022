@@ -1,0 +1,48 @@
+import sys
+sys.setrecursionlimit(10 ** 6)
+
+dx = [1, 0, -1, 0]
+dy = [0, -1, 0, 1]
+cnt = 0
+no_cnt = 0
+step = 0
+
+
+def dfs(i, j, alpha):
+    global step
+    if not (0 <= i < n and 0 <= j < n):
+        return
+
+    if visited[i][j]:
+        return
+
+    if grid[i][j] != alpha:
+        return
+
+    visited[i][j] = True
+    step += 1
+
+    for _ in range(4):
+        dfs(i+dx[_], j+dy[_], alpha)
+
+
+n = int(input())
+grid = [list(input()) for _ in range(n)]
+visited = [[False for _ in range(n)] for _ in range(n)]
+for i in range(n):
+    for j in range(n):
+        step = 0
+        dfs(i, j, grid[i][j])
+        if step != 0:
+            cnt += 1
+
+grid = [list(''.join(_).replace('R','G')) for _ in grid]
+visited = [[False for _ in range(n)] for _ in range(n)]
+for i in range(n):
+    for j in range(n):
+        step = 0
+        dfs(i, j, grid[i][j])
+        if step != 0:
+            no_cnt += 1
+
+print(cnt, no_cnt)

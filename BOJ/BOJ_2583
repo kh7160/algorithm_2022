@@ -1,0 +1,43 @@
+import sys
+sys.setrecursionlimit(10**6)
+
+M, N, K = map(int, input().split())
+graph = [[0 for _ in range(N)] for _ in range(M)]
+dx = [-1, 0, 1, 0]
+dy = [0, 1, 0, -1]
+cnt_list = []
+answer = 0
+visited = [[False for _ in range(N)] for _ in range(M)]
+
+
+def dfs(x,y):
+    global cnt
+    if not (0 <= x < M and 0 <= y < N):
+        return
+
+    if visited[x][y] or graph[x][y] == 1:
+        return
+
+    visited[x][y] = True
+    cnt += 1
+
+    for i in range(4):
+        dfs(x+dx[i], y+dy[i])
+
+for _ in range(K):
+    y1, x1, y2, x2 = map(int, input().split())
+    for i in range(x1, x2):
+        for j in range(y1, y2):
+            graph[i][j] = 1
+
+for i in range(M):
+    for j in range(N):
+        cnt = 0
+        dfs(i,j)
+        if cnt != 0:
+            cnt_list.append(cnt)
+            answer += 1
+
+cnt_list.sort()
+print(answer)
+print(*cnt_list, sep=' ')

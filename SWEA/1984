@@ -1,0 +1,6 @@
+t = int(input())
+for _ in range(t):
+    nums = list(map(int, input().split()))
+    nums.sort()
+    nums = nums[1:-1]
+    print(f'#{_+1} {round(sum(nums) / len(nums))}')

@@ -1,0 +1,48 @@
+from collections import deque
+
+
+def bfs(x, y, maps, visited):
+    cnt = 0
+    dx = [-1, 0, 1, 0]
+    dy = [0, 1, 0, -1]
+
+    queue = deque([])
+    queue.append([x,y])
+
+    while queue:
+        x, y = queue.popleft()
+        # print(f'x, y : {x, y}')
+        cnt += 1
+        visited[x][y] = True
+        for i in range(4):
+            dx_x = x + dx[i]
+            dy_y = y + dy[i]
+            if dx_x < 0 or dx_x >= len(maps) or dy_y < 0 or dy_y >= len(maps[0]):
+                continue
+
+            if maps[dx_x][dy_y] == 0 or visited[dx_x][dy_y]:
+                continue
+            
+            if maps[dx_x][dy_y] == 1:
+                queue.append([dx_x, dy_y])
+                maps[dx_x][dy_y] = maps[x][y] + 1
+        
+    return maps[len(maps)-1][len(maps[0])-1]
+
+
+def solution(maps):
+    visited = [[False for _ in range(len(maps[0]))] for _ in range(len(maps))]
+    # print(visited)
+    answer = bfs(0,0, maps, visited)
+    answer = -1 if answer == 1 else answer
+    # for _ in maps:
+    #     print(_)
+    # print(f'answer : {answer}')
+    return answer
+
+
+if __name__ == '__main__':
+    maps = [[1,0,1,1,1],[1,0,1,0,1],[1,0,1,1,1],[1,1,1,0,1],[0,0,0,0,1]]
+    # maps = [[1,0,1,1,1],[1,0,1,0,1],[1,0,1,1,1],[1,1,1,0,0],[0,0,0,0,1]]
+    # maps = [[1,1,1,1,1],[1,1,1,1,1]]
+    solution(maps)

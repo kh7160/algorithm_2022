@@ -1,0 +1,10 @@
+t = int(input())
+
+A = lambda x:x*p
+B = lambda x:q if x <= r else q+(x-r)*s
+
+for _ in range(t):
+    p,q,r,s,w = map(int, input().split())
+    result_a = A(w)
+    result_b = B(w)
+    print(f'#{_+1} {min(result_a, result_b)}')

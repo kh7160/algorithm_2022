@@ -1,0 +1,15 @@
+for case in range(10):
+    n = int(input())
+    blocks = list(map(int, input().split()))
+    for i in range(n):
+        max_ = max(blocks)
+        min_ = min(blocks)
+        if max_ - min_ == 1 or max_ - min_ == 0:
+            break
+
+        max_idx = blocks.index(max_)
+        min_idx = blocks.index(min_)
+
+        blocks[max_idx] -= 1
+        blocks[min_idx] += 1
+    print(f'#{case+1} {max(blocks) - min(blocks)}')

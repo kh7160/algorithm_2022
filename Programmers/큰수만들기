@@ -1,0 +1,41 @@
+from collections import deque
+
+
+def solution(number, k):
+    answer = ''
+    stack = []
+    number = deque(number)
+    goal_len = len(number) - k
+    cnt = 0
+    stack.append(number.popleft())
+    while number:
+        # print(f'stack, number, cnt : {stack, number, cnt}')
+        left_num = number.popleft()
+        if stack[-1] < left_num:
+            while True:
+                stack.pop()
+                cnt += 1
+                if cnt == k or not stack or stack[-1] >= left_num:
+                    break
+        stack.append(left_num)
+
+        if cnt == k:
+            break
+
+    # print(f'stack : {stack}')
+    stack = stack[:goal_len] if len(stack) > goal_len else stack + list(number)
+    answer = ''.join(stack)
+    # print(f'answer : {answer}')
+    return answer
+
+
+if __name__ == '__main__':
+    number = "1924"
+    number = "1231234"
+    number = "4177252841"
+    number = "987654321"
+    k = 2
+    k = 3
+    k = 4
+    k = 5
+    solution(number, k)

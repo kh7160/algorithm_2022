@@ -1,0 +1,22 @@
+s = list(input())
+cnt1 = 0
+cnt0 = 0
+fst = s[0]
+chk = False
+for ch in s:
+    if fst != ch:
+        fst = ch
+        chk = False
+    
+    if chk:
+        continue
+
+    if ch == '0':
+        cnt0 += 1
+        chk = True
+    
+    if ch == '1':
+        cnt1 += 1
+        chk = True
+
+print(min(cnt0, cnt1))

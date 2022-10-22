@@ -1,31 +1,29 @@
-# heapq
 import heapq
-
 
 def solution(scoville, K):
     answer = 0
     heapq.heapify(scoville)
-    while True:
-        print(f'scoville : {scoville}')
-        min_sco = heapq.heappop(scoville)
-        if min_sco >= K:
+    while len(scoville) > 1:
+        # print(f'scoville : {scoville}')
+        first = heapq.heappop(scoville)
+        second = heapq.heappop(scoville)
+        if first < K or second < K:
+            heapq.heappush(scoville, first + (second * 2))
+            answer += 1
+        else:
             break
 
-        if len(scoville) == 0:
+    if len(scoville) == 1:
+        if heapq.heappop(scoville) < K:
             answer = -1
-            break
-
-        scd_min_sco = heapq.heappop(scoville)
-        new_sco = min_sco + scd_min_sco * 2
-        heapq.heappush(scoville, new_sco)
-        answer += 1
-
-    print(answer)
+        
+    print(f'answer : {answer}')
     return answer
 
 
 if __name__ == '__main__':
     # scoville = [1, 2, 3, 9, 10, 12]
-    scoville = [1,1]
-    k = 0
-    solution(scoville=scoville, K=k)
+    scoville = [0,0,0,0]
+    # scoville = []
+    K = 3
+    solution(scoville, K)

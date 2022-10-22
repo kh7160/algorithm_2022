@@ -1,0 +1,23 @@
+def solution(n, works):
+    answer = 0
+    max_ = max(works)
+    while n != 0 and max_ != 0:
+        for idx, work in enumerate(works):
+            if work == max_ and n != 0:
+                works[idx] -= 1
+                n -= 1
+        max_ = max(works)
+    for work in works:
+        answer += work**2
+    print(answer)
+    return answer
+
+
+if __name__ == '__main__':
+    works = [4,3,3]
+    n = 4
+    works = [2,1,2]
+    n = 1
+    # works = [1,1]
+    # n = 3
+    solution(n, works)

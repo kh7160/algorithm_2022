@@ -1,0 +1,53 @@
+visited = [False] * 101
+cnt = 0
+
+
+def dfs(wires_tree, node):
+    global cnt
+    if visited[node]:
+        return
+    cnt += 1
+    for edge in wires_tree[node]:
+        visited[node] = True
+        # print(f'node, edge, visited : {node, edge, visited}')
+        dfs(wires_tree, edge)
+        # visited[node] = False
+
+def solution(n, wires):
+    global cnt
+    global visited
+    answer = 999999999
+    wires_tree = {}
+    for i in range(len(wires)):
+        wires_minus_one = wires[:i] + wires[i+1:]
+        # print(f'wires_minus_one : {wires_minus_one}')
+        diff = []
+
+        for _ in range(1, n+1):
+            wires_tree[_] = []
+
+        for wire in wires_minus_one:
+            wires_tree[wire[0]].append(wire[1])
+            wires_tree[wire[1]].append(wire[0])
+
+        visited = [False] * 101
+
+        for node in wires_tree.keys():
+            cnt = 0
+            dfs(wires_tree, node)
+            # print(cnt)
+            if cnt != 0: diff.append(cnt)
+        answer = min(answer, max(diff) - min(diff))
+
+    # print(f'answer : {answer}')
+    return answer
+
+
+if __name__ == '__main__':
+    n = 9
+    n = 4
+    n = 7
+    wires = [[1,3],[2,3],[3,4],[4,5],[4,6],[4,7],[7,8],[7,9]]
+    wires = [[1,2],[2,3],[3,4]]
+    wires = [[1,2],[2,7],[3,7],[3,4],[4,5],[6,7]]
+    solution(n, wires)

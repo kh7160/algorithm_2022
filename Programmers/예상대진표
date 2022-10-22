@@ -1,0 +1,31 @@
+def round_my(num):
+    mod_ = num % 2
+    return num//2 + 1 if mod_ == 1 else num // 2
+    
+
+def solution(n,a,b):
+    answer = 0
+
+    for i in range(n//2):
+        if a == b:
+            break
+
+        a = round_my(a)
+        b = round_my(b)
+        answer += 1
+        # print(f'answer, a, b : {answer, a, b}')
+
+    # print(f'answer : {answer}')
+    return answer
+
+
+n = 8
+n = 4
+n = 2
+a = 4
+a = 3
+a = 1
+b = 7
+b = 4
+b = 2
+solution(n, a, b)

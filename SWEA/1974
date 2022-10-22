@@ -1,0 +1,29 @@
+t = int(input())
+for _ in range(t):
+    sdq = [list(map(int, input().split())) for _ in range(9)]
+    chk = True
+    for line in sdq:
+        # print(f'sum(line) : {sum(line)}')
+        if sum(line) != 45:
+            chk = False
+            break
+    
+    for i in range(9):
+        # print(f'[_[0] for _ in sdq] : {[_[0] for _ in sdq]}')
+        if sum([_[i] for _ in sdq]) != 45:
+            chk = False
+            break
+    
+    for i in range(0, 9, 3):
+        for j in range(0, 9, 3):
+            sum_ = 0
+            for k in range(i, i+3):
+                # print(f'i, j, k : {i, j, k}')
+                # print(f'sdq[k][j:j+3] : {sdq[k][j:j+3]}')
+                sum_ += sum(sdq[k][j:j+3])
+            # print(f'sum_ : {sum_}')
+            if sum_ != 45:
+                chk = False
+                break
+
+    print(f'#{_+1} 0') if chk == False else print(f'#{_+1} 1')
