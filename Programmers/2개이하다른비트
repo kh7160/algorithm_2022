@@ -1,0 +1,20 @@
+def solution(numbers):
+    answer = []
+    for num in numbers:
+        if num % 2 == 1:
+            num_bin = '0'+bin(num)[2:]
+            idx = num_bin.rfind('0')
+            num_bin = list(num_bin)
+            num_bin[idx] = '1'
+            num_bin[idx+1] = '0'
+            answer.append(int(''.join(num_bin), 2))
+        else:
+            answer.append(num+1)
+        
+    print(answer)
+    return answer
+
+
+if __name__ == '__main__':
+    numbers = [2,7]
+    solution(numbers)
